@@ -5,17 +5,20 @@ import { Cart } from "../../Cart";
 
 import logo from "../../../public/assets/badge.png";
 
-import "./styles.module.scss";
+import styles from "../../../styles/Header.module.scss";
+import Image from "next/image";
 
 export const Header = () => (
-  <header className="header">
+  <header className={styles.header}>
     <Container>
-      <div className="header__wrapper">
-        <div className="logo">
-          <Link className="logo__link" href="/">
-            <a>
-              <img className="logo__image" src={logo} alt="logo" />
-              <h1 className="logo__text">Store</h1>
+      <div className={styles.wrapper}>
+        <div className={styles.logo}>
+          <Link href="/">
+            <a className={styles.logoLink}>
+              <div className={styles.logoImage}>
+                <Image src={logo} alt="logo" layout="responsive" priority/>
+              </div>
+              <h1 className={styles.logoText}>Store</h1>
             </a>
           </Link>
         </div>

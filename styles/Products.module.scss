@@ -1,18 +1,18 @@
-@import '../../theme/fonts.scss';
-@import '../../theme/spacing.scss';
-@import '../../theme/colors.scss';
+@import '../theme/fonts.scss';
+@import '../theme/spacing.scss';
+@import '../theme/colors.scss';
 
-.grid-wrapper {
+.gridWrapper {
   margin-top: spacer(3);
 }
 
-.no-more-products {
+.noMoreProducts {
   font-size: $font-size-xl;
   text-align: center;
   color: $color-primary;
 }
 
-.products-status {
+.status {
   display: flex;
   justify-content: center;
   align-items: center;

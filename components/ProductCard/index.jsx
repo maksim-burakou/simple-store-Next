@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { productStatus } from "../../models/productStatus";
 import bestPriceIcon from "../../public/assets/best-price.png";
 import onSalesIcon from "../../public/assets/discount.png";
+import { placeholder } from "../../constants/imagePlaceholder";
 
 import styles from "../../styles/ProductCard.module.scss";
 import { useCartContext } from "../../contexts/cart";
@@ -50,6 +51,8 @@ export const ProductCard = ({
               src={image}
               alt={`${title}. ${info}. ${status}. ${price}`}
               layout="fill"
+              placeholder="blur"
+              blurDataURL={placeholder}
             />
             <figcaption>
               <h3 data-testid="product-сard__test--title">{title}</h3>

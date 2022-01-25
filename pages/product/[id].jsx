@@ -1,7 +1,7 @@
 import { useProduct } from "../../hooks/useProduct";
 import { productStatus } from "../../models/productStatus";
 import { amountTypeModification } from "../../models/amountModifier";
-import "../../styles/Product.module.scss";
+import styles from "../../styles/Product.module.scss";
 
 const Product = () => {
   const {
@@ -14,9 +14,9 @@ const Product = () => {
   } = useProduct();
 
   return (
-    <section className="product">
-      <div className="product__header">
-        <h1 className="product__title">
+    <section className={styles.product}>
+      <div className={styles.product__header}>
+        <h1 className={styles.product__title}>
           {productInfo.title}
           {productInfo.status === productStatus.onSales ? (
             <span>, ON SALE!</span>
@@ -25,16 +25,20 @@ const Product = () => {
           ) : null}
         </h1>
       </div>
-      <div className="product__content">
-        <img className="product__image" src={productInfo.image} alt="product" />
-        <div className="product__info">
+      <div className={styles.product__content}>
+        <img
+          className={styles.product__image}
+          src={productInfo.image}
+          alt="product"
+        />
+        <div className={styles.product__info}>
           <div className="info__header">
             <h2>About product:</h2>
             <p>
               <span>Info: </span>
               {productInfo.title}
             </p>
-            <div className="product__price">
+            <div className={styles.product__price}>
               <span>Price: </span>
               {productInfo.status === productStatus.onSales ? (
                 <h1 className="product-price--current --sales">
@@ -56,7 +60,7 @@ const Product = () => {
                 <h1 className="product-price--current">not defined</h1>
               )}
             </div>
-            <div className="product__amount">
+            <div className={styles.product__amount}>
               <p>Amount: </p>
               {poductInCartInfo?.hasOwnProperty("amount") ? (
                 <>

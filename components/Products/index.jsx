@@ -15,7 +15,7 @@ import {
   PRODUCT_SEARCH_INPUT_ID,
 } from "../../constants";
 
-import "./styles.module.scss";
+import styles from "../../styles/Products.module.scss";
 
 const LAZY_LOADING_MOCK_TIME = 1000;
 
@@ -67,7 +67,7 @@ export const Products = () => {
         onChange={searchHandler}
         placeholder="Search..."
       />
-      <div className="grid-wrapper">
+      <div className={styles.gridWrapper}>
         <Grid id={PRODUCT_LIST_ID}>
           {productsToDisplay.map((product, index) => (
             <ProductCard
@@ -82,12 +82,12 @@ export const Products = () => {
             />
           ))}
         </Grid>
-        <div className="products-status">
+        <div className={styles.status}>
           {!isOver && isLoading ? (
             <Loader id={LOADER_ID} />
           ) : (
             isOver && (
-              <p className="no-more-products">There is no more products</p>
+              <p className={styles.noMoreProducts}>There is no more products</p>
             )
           )}
         </div>

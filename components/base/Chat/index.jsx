@@ -11,7 +11,7 @@ import {
   CHAT_CLOSE_BUTTON_ID,
 } from "../../../constants";
 
-import "./styles.module.scss";
+import styles from "../../../styles/Chat.module.scss";
 
 const baseClassButton = "chat-button";
 const baseClassChat = "chat";
@@ -49,12 +49,21 @@ export const ChatButton = () => {
       <button
         id={CHAT_BUTTON_ID}
         onClick={toggleChat}
-        className={buttonClassNames}
+        className={
+          selected
+            ? `${styles.chatButton} ${styles.chatButton__selected}`
+            : styles.chatButton
+        }
       >
         Chat
       </button>
-      <div id={CHAT_ID} className={chatClassNames}>
-        <div className={`${baseClassChat}__header`}>
+      <div
+        id={CHAT_ID}
+        className={
+          selected ? `${styles.chat} ${styles.chat__selected}` : styles.chat
+        }
+      >
+        <div className={styles.chat__header}>
           <h3>Chat</h3>
           <button id={CHAT_CLOSE_BUTTON_ID} onClick={toggleChat}>
             X
@@ -63,15 +72,15 @@ export const ChatButton = () => {
         <ul
           id={CHAT_LIST_ID}
           ref={listRef}
-          className={`${baseClassChat}__list`}
+          className={styles.chat__list}
         >
           {chatHistory.map(({ id, message, isUser }) => (
-            <li key={id} className={isUser ? "user-message" : ""}>
+            <li key={id} className={isUser ? styles.userMessage : ""}>
               {message}
             </li>
           ))}
         </ul>
-        <form onSubmit={handleSend} className={`${baseClassChat}__footer`}>
+        <form onSubmit={handleSend} className={styles.chat__footer}>
           <input
             id={CHAT_MESSAGE_INPUT_ID}
             onChange={handleMessageChange}

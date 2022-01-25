@@ -1,7 +1,7 @@
-import "./styles.module.scss";
+import styles from "../../../styles/Grid.module.scss";
 
 export const Grid = ({ children, ...otherProps }) => (
-  <div className="grid" {...otherProps}>
+  <div className={styles.grid} {...otherProps}>
     {children}
   </div>
 );

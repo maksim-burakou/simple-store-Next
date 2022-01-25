@@ -1,6 +1,6 @@
-@import '../../../theme/spacing.scss';
-@import '../../../theme/fonts.scss';
-@import '../../../theme/variables';
+@import '../theme/spacing.scss';
+@import '../theme/fonts.scss';
+@import '../theme/variables';
 
 .header {
   display: flex;
@@ -10,29 +10,29 @@
   margin-bottom: spacer(3);
 }
 
-.header__wrapper {
+.wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.logo__link {
+.logoLink {
   display: flex;
   align-items: center;
 }
 
-.logo__image {
+.logoImage {
   display: block;
   width: 40px;
   margin-right: spacer(3);
 }
 
-.logo__text {
+.logoText {
   font-weight: $font-weight-black;
 }
 
 @media (max-width: $breakpoint-sm) {
-  .logo__text {
+  .logoText {
     font-size: $font-size-xxl;
   }
 }

@@ -2,20 +2,16 @@ import { useState, useCallback } from "react";
 
 import { PurchaseItem } from "../base/PurchaseItem";
 
-import { useClassNames } from "../../utils/classNames";
 import cart from "../../public/assets/cart.png";
 
-import "./cart.module.scss";
+import styles from "../../styles/Cart.module.scss";
 import { useCartContext } from "../../contexts/cart";
-
-const baseClassCart = "cart";
+import Image from "next/image";
 
 export const Cart = () => {
   const [selected, setSelected] = useState(false);
 
   const { cartList, totalPrice } = useCartContext();
-
-  const cartClassNames = useClassNames({ __selected: selected }, baseClassCart);
 
   const toggleCart = useCallback(() => {
     setSelected((prevValue) => !prevValue);
@@ -23,20 +19,26 @@ export const Cart = () => {
 
   return (
     <>
-      <button className="cart-button" onClick={toggleCart}>
-        <img className="cart-button__image" src={cart} alt="cart-icon" />
+      <button className={styles.cartButton} onClick={toggleCart}>
+        <div className={styles.cartButton__image}>
+          <Image src={cart} alt="cart-icon" layout="responsive" priority/>
+        </div>
         {!!cartList.length && (
-          <div className="notification">
+          <div className={styles.notification}>
             <span>{cartList.length}</span>
           </div>
         )}
       </button>
-      <div className={cartClassNames}>
-        <div className={`${baseClassCart}__header`}>
+      <div
+        className={
+          selected ? `${styles.cart} ${styles.cart__selected}` : styles.cart
+        }
+      >
+        <div className={styles.cart__header}>
           <h3>Cart</h3>
           <button onClick={toggleCart}>X</button>
         </div>
-        <div className={`${baseClassCart}__list`}>
+        <div className={styles.cart__list}>
           {cartList.map((item) => (
             <PurchaseItem
               key={item.id}
@@ -47,7 +49,7 @@ export const Cart = () => {
             />
           ))}
         </div>
-        <div className={`${baseClassCart}__footer`}>
+        <div className={styles.cart__footer}>
           <h3>
             Total price: <span>{`${totalPrice}$`}</span>
           </h3>

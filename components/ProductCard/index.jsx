@@ -7,6 +7,7 @@ import onSalesIcon from "../../public/assets/discount.png";
 import styles from "../../styles/ProductCard.module.scss";
 import { useCartContext } from "../../contexts/cart";
 import Link from "next/link";
+import Image from "next/image";
 
 export const ProductCard = ({
   id,
@@ -34,57 +35,64 @@ export const ProductCard = ({
       <a>
         <div className={styles.productCard}>
           {status === productStatus.goodPrice ? (
-            <img
-              className="bestPriceIcon"
-              src={bestPriceIcon}
-              alt="best price"
-            />
+            <div className={styles.bestPrice__icon}>
+              <Image src={bestPriceIcon} alt="best price" layout="responsive" />
+            </div>
           ) : status === productStatus.onSales ? (
-            <img className="onSalesIcon" src={onSalesIcon} alt="on sales" />
+            <div className={styles.onSales__icon}>
+              <Image src={onSalesIcon} alt="on sales" layout="responsive" />
+            </div>
           ) : null}
-          <figure className="product-card__head">
-            <img
-              data-testid="product-dard__test--image"
-              className="product-card__image"
+          <figure className={styles.productCard__head}>
+            <Image
+              data-testid="product-сard__test--image"
+              className={styles.productCard__image}
               src={image}
               alt={`${title}. ${info}. ${status}. ${price}`}
+              layout="fill"
             />
             <figcaption>
-              <h3 data-testid="product-dard__test--title">{title}</h3>
+              <h3 data-testid="product-сard__test--title">{title}</h3>
             </figcaption>
           </figure>
-          <section className="product-card__body">
+          <section className={styles.productCard__body}>
             <p
-              data-testid="product-dard__test--info"
-              className="product-card__info"
+              data-testid="product-сard__test--info"
+              className={styles.productCard__info}
             >
               {info}
             </p>
             <div
-              data-testid="product-dard__test--price"
-              className="product-card__price"
+              data-testid="product-сard__test--price"
+              className={styles.productPrice}
             >
               {status === productStatus.onSales ? (
-                <h1 className="product-price--current --sales">
+                <h1
+                  className={`${styles.productPrice__current} ${styles.sales}`}
+                >
                   {`${price}$ `}
-                  <span className="product-price--prev">{`${prevPrice}$`}</span>
+                  <span
+                    className={styles.productPrice__prev}
+                  >{`${prevPrice}$`}</span>
                 </h1>
               ) : (
                 <h1
-                  className={`product-price--current ${
-                    status === productStatus.goodPrice ? "--good-price" : ""
+                  className={`${styles.productPrice__current} ${
+                    status === productStatus.goodPrice ? styles.goodPrice : ""
                   }`}
                 >
                   {`${price}$`}
                 </h1>
               )}
               {!price && (
-                <h1 className="product-price--current">not defined</h1>
+                <h1 className={styles.productPrice__current}>not defined</h1>
               )}
             </div>
             <button
               disabled={!isActive}
-              className={`product-card__button ${isActive ? "" : "--disabled"}`}
+              className={`${styles.productCard__button} ${
+                isActive ? "" : styles.disabled
+              }`}
               onClick={(e) => handlePurchase(e, id, title, price)}
             >
               {isActive ? "Add to trolley" : "Already in the cart"}

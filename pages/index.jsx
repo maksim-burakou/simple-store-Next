@@ -1,19 +1,21 @@
-import { Container } from "../components/base/Container";
-import { Header } from "../components/base/Header";
+import Head from "next/head";
 import { Products } from "../components/Products";
-import { ChatButton } from "../components/base/Chat";
-import { CartContextProvider } from "../contexts/cart";
 
 const Home = () => (
-  <CartContextProvider>
-    <main className="App">
-      <Header />
-      <Container>
-        <Products />
-      </Container>
-      <ChatButton />
-    </main>
-  </CartContextProvider>
+  <>
+    <Head>
+      <meta charSet="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
+      <meta
+        name="description"
+        content="This is simple-store with Next.js and MobX"
+      />
+      <meta name="keywords" content="React, Next.js, MobX, products" />
+      <title>NextMobX-products</title>
+    </Head>
+    <Products />
+  </>
 );
 
 export default Home;

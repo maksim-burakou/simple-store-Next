@@ -1,6 +1,5 @@
 import { useCallback, useState } from "react";
 
-import { useClassNames } from "../../../utils/classNames";
 import { useChat } from "../../../hooks/useChat";
 import {
   CHAT_BUTTON_ID,
@@ -13,19 +12,11 @@ import {
 
 import styles from "../../../styles/Chat.module.scss";
 
-const baseClassButton = "chat-button";
-const baseClassChat = "chat";
-
 export const ChatButton = () => {
   const [selected, setSelected] = useState(false);
   const [message, setMessage] = useState("");
   const { chatHistory, onSubmitMessage, listRef } = useChat();
 
-  const chatClassNames = useClassNames({ __selected: selected }, baseClassChat);
-  const buttonClassNames = useClassNames(
-    { __selected: selected },
-    baseClassButton
-  );
   const toggleChat = useCallback(
     () => setSelected((prevValue) => !prevValue),
     []
@@ -69,11 +60,7 @@ export const ChatButton = () => {
             X
           </button>
         </div>
-        <ul
-          id={CHAT_LIST_ID}
-          ref={listRef}
-          className={styles.chat__list}
-        >
+        <ul id={CHAT_LIST_ID} ref={listRef} className={styles.chat__list}>
           {chatHistory.map(({ id, message, isUser }) => (
             <li key={id} className={isUser ? styles.userMessage : ""}>
               {message}
